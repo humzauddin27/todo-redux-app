@@ -23,7 +23,7 @@ TODOS = [
 	{
 	'id': 4,
 	'todo': 'Become a Pokemon master',
-	'completed': False
+	'completed': True
 	},
 	{
 	'id': 5,
@@ -31,6 +31,9 @@ TODOS = [
 	'completed': False
 	},
 ]
+
+parser = reqparse.RequestParser()
+parser.add_argument('todo')
 
 class Todo(Resource):
 	def get(self, id):
@@ -43,7 +46,16 @@ class Todo(Resource):
 class TodoList(Resource):
 	def get(self):
 		return TODOS
-	##put
+	def post(self):
+		args = parser.parse_args()
+		newID = len(TODOS) + 1
+		newItem = {
+			'id': newID,
+			'todo': args['todo'],
+			'completed': False
+		}
+		TODOS.append(newItem)
+		return newItem
 
 
 api.add_resource(TodoList, '/todos')

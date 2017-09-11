@@ -3,7 +3,7 @@ from flask_restful import reqparse, abort, Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
-
+ 
 parser = reqparse.RequestParser()
 parser.add_argument('todo')
 

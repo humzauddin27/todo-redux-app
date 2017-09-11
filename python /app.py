@@ -1,10 +1,10 @@
-#from flask import Flask, jsonify
-#from flask_restful import Resource, Api, request
+from flask import Flask, request
+from flask_restful import reqparse, abort, Api, Resource
 
-#app = Flask(__name__)
-#api = Api(app)
+app = Flask(__name__)
+api = Api(app)
 
-tasks = [
+TODOS = [ 
 	{
 	'id': 1,
 	'todo': 'Achieve world peace',
@@ -32,7 +32,22 @@ tasks = [
 	},
 ]
 
-def get(id):
-	return tasks[0]
+class Todo(Resource):
+	def get(self, id):
+		return TODOS[int(id) - 1]
+	#def post(self):
+		#TODOS[]
 
-print(get(0))
+	##delete
+
+class TodoList(Resource):
+	def get(self):
+		return TODOS
+	##put
+
+
+api.add_resource(TodoList, '/todos')
+api.add_resource(Todo, '/todos/<id>')
+
+if __name__ == '__main__':
+    app.run(debug=True)

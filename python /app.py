@@ -41,7 +41,7 @@ class Todo(Resource):
 	#def post(self):
 		#TODOS[]
 
-	##delete
+	##delete(self)
 
 class TodoList(Resource):
 	def get(self):

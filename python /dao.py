@@ -8,11 +8,12 @@ TODOS = db.todos
 class TaskDao:
 
 	def get_task_by_id(self, task_id):
-		return TODOS.find({"id":task_id})
+		result = TODOS.find_one({"id": int(task_id)})
+		return result
 
 	def create_task(self, task_id, task):
 		return TODOS.insert({
-			"id": task_id,
+			"id": int(task_id),
 			"task": task,
 			"completed": false
 			})

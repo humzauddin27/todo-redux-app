@@ -3,16 +3,30 @@ from dao import TaskDao
 class Model:
 
 	def __init__(self, collection=[]):
+		if (collection == None):
+			return
 		self.id = collection['id']
-		self.task =	collection['task']
+		self.task =	collection['todo']
 		self.completed = collection['completed']
 
 	def find_by_id(task_id):
 		dao = TaskDao()
 		task = dao.get_task_by_id(task_id)
-		model = Model(task) if model else None
+		model = Model(task).__dict__
 
 		return model
+
+	def get_all_tasks():
+		dao = TaskDao()
+
+		listTasks = dao.get_all_tasks()
+		new_list = []
+		for i in listTasks:
+			new_list.append(Model(i).__dict__)
+
+
+		return new_list
+
 
 #	def find_by_params(kwargs):
 #		dao = TaskDao()
@@ -38,9 +52,3 @@ class Model:
 
 		return response
 
-	def get_all_tasks():
-		dao = TaskDao()
-
-		listTasks = dao.get_all_tasks()
-		for i in listTasks:
-			i = Model(i) if i else None

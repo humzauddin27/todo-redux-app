@@ -5,13 +5,14 @@ from model import Model
 app = Flask(__name__)
 api = Api(app)
 parser = reqparse.RequestParser()
+parser.add_argument('id')
 parser.add_argument('todo')
 
 class Todo(Resource):
-	def get(self, task_id):
-		task_model = Model.find_by_id(task_id)
-		data = task_model.jsonify(task_model.__dict__)
-		return data
+	def get(self, id):
+		task_model = Model.find_by_id(id)
+		print(task_model)
+		return task_model
 
 	#def post(self):
 		#TODOS[]
@@ -21,7 +22,10 @@ class Todo(Resource):
 class TodoList(Resource):
 	def get(self):
 		task_model = Model.get_all_tasks()
-		the_list = task_model.jsonify(task_model.__dict__)
+		the_list = []
+		for i in task_model:
+			the_list.append(i)
+
 		return the_list
 
 	#def post(self):

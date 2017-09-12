@@ -7,9 +7,12 @@ function tasksfromapi (
 	action
 ) {
 	switch (action.type) {
-		case 'FETCH_TODOS'
+		case 'FETCH_TODOS':
 			return Object.assign({}, state, {isFetching: true})
-		case 'RECIEVE_TODOS'
-
+		case 'RECIEVE_TODOS':
+			return Object.assign({}, state, {
+				isFetching: false,
+				items: action.
+			})
 	}
 }

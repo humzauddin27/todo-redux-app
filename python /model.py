@@ -40,6 +40,7 @@ class Model:
 
 	def get_all_tasks():
 		dao = TaskDao()
+
 		listTasks = dao.get_all_tasks()
 		for i in listTasks:
 			i = Model(i) if i else None

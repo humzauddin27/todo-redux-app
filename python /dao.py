@@ -10,11 +10,11 @@ class TaskDao:
 	def get_task_by_id(self, task_id):
 		return TODOS.find({"id":task_id})
 
-	def; create_task(self, task_id, task, completed):
+	def create_task(self, task_id, task):
 		return TODOS.insert({
 			"id": task_id,
 			"task": task,
-			"completed": completed
+			"completed": false
 			})
 
 	def get_all_tasks(self):
@@ -23,5 +23,3 @@ class TaskDao:
 	#def update_task(self, task_id, task):
 
 	#def delete_task(self, task_id):
-	#def get_task_by_params(self, kwargs):
-	#return TODOS.find({kwargs})

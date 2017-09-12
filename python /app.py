@@ -28,7 +28,10 @@ class TodoList(Resource):
 
 		return the_list
 
-	#def post(self):
+	def post(self):
+		args = parser.parse_args()
+		return Model.create_task(args['todo'])
+		
 
 
 api.add_resource(TodoList, '/todos')

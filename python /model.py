@@ -35,12 +35,11 @@ class Model:
 #		task_models = [task_collection.pop(0)] + [Model(task).__dict__ for task in task_collection]
 #		return task_models
 
+	@staticmethod
 	def create_task(task):
-
 		dao = TaskDao()
 		new_task = dao.create_task(task)
-		task_model = Model(new_task) if new_task else None
-
+		task_model = Model(new_task).__dict__
 		return task_model
 
 	def delete_task(task_id):
